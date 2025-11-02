@@ -1,0 +1,84 @@
+<!-- Head (letakkan di <head>) -->
+<link rel="stylesheet" href="libs/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Navbar (letakkan tepat setelah <body>) -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="dashboard.html">UMKM App</a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="transaksi.html">Catat Pembukuan</a></li>
+            <li class="nav-item"><a class="nav-link" href="laporan.html">Laporan</a></li>
+            <li class="nav-item"><a class="nav-link" href="stok.html">Stok</a></li>
+            <li class="nav-item"><a class="nav-link" href="utangpiutang.html">Utang/Piutang</a></li>
+            <li class="nav-item"><a class="nav-link" href="kontak.html">Kontak</a></li>
+            <li class="nav-item"><a class="nav-link" href="invoice.html">Invoice</a></li>
+            <li class="nav-item"><a class="nav-link" href="history.html">History</a></li>
+            <li class="nav-item"><a class="nav-link text-warning" href="index.html">Logout</a></li>
+        </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h3 class="mb-3">Invoice / Kwitansi Digital</h3>
+
+    <div class="row g-3">
+        <div class="col-md-6">
+        <div class="card p-3 h-100">
+            <h6 class="mb-3">Sumber Data</h6>
+            <div class="mb-2">
+            <select class="form-select">
+                <option value="trx">Dari Transaksi Tercatat</option>
+                <option value="manual">Input Manual</option>
+            </select>
+            </div>
+
+            <!-- Form invoice -->
+            <div class="row g-2">
+            <div class="col-md-6"><label>Nama Pelanggan</label><input class="form-control"></div>
+            <div class="col-md-6"><label>Tanggal</label><input type="date" class="form-control"></div>
+            <div class="col-md-12"><label>Deskripsi</label><input class="form-control" placeholder="Rincian barang/jasa"></div>
+            <div class="col-md-6"><label>Jumlah</label><input type="number" class="form-control" min="0"></div>
+            <div class="col-md-6"><label>Catatan</label><input class="form-control" placeholder="opsional"></div>
+            </div>
+
+            <div class="d-flex gap-2 mt-3">
+            <button class="btn btn-primary">Simpan</button>
+            <button class="btn btn-success">Kirim</button>
+            <button class="btn btn-outline-secondary">Bagikan</button>
+            </div>
+        </div>
+        </div>
+
+        <div class="col-md-6">
+        <div class="card p-3 h-100">
+            <h6 class="mb-3">Preview</h6>
+            <div id="invoicePreview" class="border rounded p-3 bg-white">
+            <!-- tampilkan logo, header, tabel ringkas, total -->
+            <h4 class="mb-1">Nama Bisnis / Logo</h4>
+            <small class="text-secondary">#INV-0001</small><hr>
+            <p><b>Pelanggan:</b> -<br><b>Tanggal:</b> -</p>
+            <p><b>Deskripsi:</b><br>-</p>
+            <h5 class="text-end">Total: Rp 0</h5>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer (di akhir <body>) -->
+<footer class="text-center p-3 mt-4 text-secondary">
+    © 2025 UMKM App
+</footer>
+
+<!-- Scripts umum (di akhir <body>) -->
+<script src="libs/sweetalert2.min.js"></script>
+<script src="libs/chart.min.js"></script>
+<script src="libs/FileSaver.min.js"></script>

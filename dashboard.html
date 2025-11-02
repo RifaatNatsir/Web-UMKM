@@ -1,0 +1,61 @@
+<!-- Head (letakkan di <head>) -->
+<link rel="stylesheet" href="libs/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Navbar (letakkan tepat setelah <body>) -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="dashboard.html">UMKM App</a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="transaksi.html">Catat Pembukuan</a></li>
+            <li class="nav-item"><a class="nav-link" href="laporan.html">Laporan</a></li>
+            <li class="nav-item"><a class="nav-link" href="stok.html">Stok</a></li>
+            <li class="nav-item"><a class="nav-link" href="utangpiutang.html">Utang/Piutang</a></li>
+            <li class="nav-item"><a class="nav-link" href="kontak.html">Kontak</a></li>
+            <li class="nav-item"><a class="nav-link" href="invoice.html">Invoice</a></li>
+            <li class="nav-item"><a class="nav-link" href="history.html">History</a></li>
+            <li class="nav-item"><a class="nav-link text-warning" href="index.html">Logout</a></li>
+        </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h3 class="mb-3">Dashboard</h3>
+    <div class="row g-3">
+        <div class="col-md-4"><div class="card p-3"><small>Saldo Kas</small><h3 id="sumSaldo">Rp0</h3></div></div>
+        <div class="col-md-4"><div class="card p-3"><small>Pemasukan (hari ini)</small><h3 id="sumIn">Rp0</h3></div></div>
+        <div class="col-md-4"><div class="card p-3"><small>Pengeluaran (hari ini)</small><h3 id="sumOut">Rp0</h3></div></div>
+    </div>
+
+    <div class="card p-3 mt-3">
+        <h6 class="mb-2">Stok Menipis</h6>
+        <ul id="listLowStock" class="list-group list-group-flush">
+        <!-- item contoh -->
+        <!-- <li class="list-group-item d-flex justify-content-between">
+            Kopi Arabika 200g <span class="badge bg-danger">4 / batas 5</span>
+            </li> -->
+        </ul>
+    </div>
+
+    <div class="card p-3 mt-3">
+        <h6 class="mb-2">Tren Pemasukan vs Pengeluaran (7 hari)</h6>
+        <canvas id="chartDaily" height="120"></canvas>
+    </div>
+</div>
+
+
+<!-- Footer (di akhir <body>) -->
+<footer class="text-center p-3 mt-4 text-secondary">
+  © 2025 UMKM App
+</footer>
+
+<!-- Scripts umum (di akhir <body>) -->
+<script src="libs/sweetalert2.min.js"></script>
+<script src="libs/chart.min.js"></script>
+<script src="libs/FileSaver.min.js"></script>

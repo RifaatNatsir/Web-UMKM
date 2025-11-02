@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="UTF-8"><title>Login/Registrasi</title>
+<link rel="stylesheet" href="libs/bootstrap.min.css">
+</head><body class="bg-light d-flex justify-content-center align-items-center vh-100">
+<div class="card shadow p-4" style="width:380px">
+  <ul class="nav nav-pills mb-3" role="tablist">
+    <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#login">Masuk</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#register">Daftar</button></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="login" class="tab-pane fade show active">
+      <form>
+        <div class="mb-2"><label>Email</label><input class="form-control" type="email"></div>
+        <div class="mb-2"><label>Password</label><input class="form-control" type="password"></div>
+        <a class="small d-block mb-2" href="#">Lupa Password?</a>
+        <button class="btn btn-primary w-100">Masuk</button>
+      </form>
+    </div>
+    <div id="register" class="tab-pane fade">
+      <form>
+        <div class="mb-2"><label>Nama</label><input class="form-control"></div>
+        <div class="mb-2"><label>Email</label><input class="form-control" type="email"></div>
+        <div class="mb-2"><label>Password</label><input class="form-control" type="password"></div>
+        <div class="mb-3"><label>Konfirmasi Password</label><input class="form-control" type="password"></div>
+        <button class="btn btn-success w-100">Daftar</button>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="libs/bootstrap.bundle.min.js"></script>
+</body></html>
