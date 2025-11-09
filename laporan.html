@@ -26,54 +26,49 @@
 </nav>
 
 <div class="container mt-4">
-    <h3 class="mb-3">Laporan Usaha</h3>
+  <h3 class="mb-3">Laporan Usaha</h3>
 
-    <div class="row g-3 mb-2">
-        <div class="col-md-3">
-            <label>Pilih Bulan</label>
-            <input type="month" class="form-control">
-        </div>
-            <div class="col-md-3 d-flex align-items-end">
-            <button class="btn btn-outline-primary w-100">Terapkan</button>
-        </div>
+  <div class="row g-3 mb-2">
+    <div class="col-md-3">
+      <label>Pilih Bulan</label>
+      <input type="month" class="form-control">
     </div>
+    <div class="col-md-3 d-flex align-items-end">
+      <button class="btn btn-outline-primary w-100" id="btnApply">Terapkan</button>
+    </div>
+  </div>
 
-    <!-- Ringkasan -->
-    <div class="row g-3">
-        <div class="col-md-3"><div class="card p-3"><small>Total Pemasukan</small><h4 id="sumIn">Rp0</h4></div></div>
-        <div class="col-md-3"><div class="card p-3"><small>Total Pengeluaran</small><h4 id="sumOut">Rp0</h4></div></div>
-        <div class="col-md-3"><div class="card p-3"><small>Saldo Akhir</small><h4 id="sumSaldo">Rp0</h4></div></div>
-        <div class="col-md-3"><div class="card p-3"><small>Status Utang/Piutang</small><h6 id="sumUP">0 aktif</h6></div></div>
-    </div>
+  <!-- Ringkasan -->
+  <div class="row g-3">
+    <div class="col-md-3"><div class="card p-3"><small>Total Pemasukan</small><h4 id="sumIn">Rp0</h4></div></div>
+    <div class="col-md-3"><div class="card p-3"><small>Total Pengeluaran</small><h4 id="sumOut">Rp0</h4></div></div>
+    <div class="col-md-3"><div class="card p-3"><small>Saldo Akhir</small><h4 id="sumSaldo">Rp0</h4></div></div>
+    <div class="col-md-3"><div class="card p-3"><small>Status Utang/Piutang</small><h6 id="sumUP">0 aktif</h6></div></div>
+  </div>
 
-    <div class="card p-3 mt-3">
-        <h6 class="mb-2">Grafik Pemasukan vs Pengeluaran</h6>
-        <canvas id="chartLaporan" height="140"></canvas>
-    </div>
+  <div class="card p-3 mt-3" style="height: 320px;">
+    <h6 class="mb-2">Grafik Pemasukan vs Pengeluaran</h6>
+    <canvas id="chartLaporan"></canvas>
+  </div>
 
-    <div class="row mt-3 g-3">
-        <div class="col-md-6">
-        <div class="card p-3 h-100">
-            <h6>Kategori Terlaris</h6>
-            <ol id="topKategori" class="mb-0">
-            <!-- <li>Kopi (Rp 3.500.000) — 42%</li> -->
-            </ol>
-        </div>
-        </div>
-        <div class="col-md-6">
-        <div class="card p-3 h-100">
-            <h6>Rekomendasi</h6>
-            <ul id="panelRekomendasi" class="mb-0">
-            <!-- <li class="text-success">Tingkatkan stok kategori X</li> -->
-            </ul>
-        </div>
-        </div>
+  <div class="row mt-3 g-3">
+    <div class="col-md-6">
+      <div class="card p-3 h-100">
+        <h6>Kategori Terlaris</h6>
+        <ol id="topKategori" class="mb-0"><li>-</li></ol>
+      </div>
     </div>
+    <div class="col-md-6">
+      <div class="card p-3 h-100">
+        <h6>Rekomendasi</h6>
+        <ul id="panelRekomendasi" class="mb-0"><li>-</li></ul>
+      </div>
+    </div>
+  </div>
 
-    <div class="d-flex gap-2 mt-3">
-        <button class="btn btn-success">Export PDF</button>
-        <button class="btn btn-outline-success">Export Excel</button>
-    </div>
+  <div class="d-flex gap-2 mt-3">
+    <button class="btn btn-success" id="btnExportJSON">Export JSON</button>
+  </div>
 </div>
 
 <!-- Footer (di akhir <body>) -->
@@ -82,6 +77,9 @@
 </footer>
 
 <!-- Scripts umum (di akhir <body>) -->
+<script src="js/dummyData.js"></script>
 <script src="libs/sweetalert2.min.js"></script>
 <script src="libs/chart.min.js"></script>
 <script src="libs/FileSaver.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/laporan.js"></script>

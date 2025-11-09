@@ -26,37 +26,27 @@
 </nav>
 
 <div class="container mt-4">
-    <h3 class="mb-3">Kelola Stok</h3>
+  <h3 class="mb-3">Kelola Stok</h3>
 
-    <div class="card p-3 mb-3">
-        <h6 class="mb-3">Tambah / Perbarui Produk</h6>
-        <div class="row g-2">
-        <div class="col-md-5"><label>Nama Produk</label><input class="form-control"></div>
-        <div class="col-md-2"><label>Harga</label><input type="number" class="form-control" min="0"></div>
-        <div class="col-md-2"><label>Stok</label><input type="number" class="form-control" min="0"></div>
-        <div class="col-md-2"><label>Stok Minimum</label><input type="number" class="form-control" min="0"></div>
+  <div class="card p-3 mb-3">
+    <h6 class="mb-3">Tambah / Perbarui Produk</h6>
+    <form id="formStok">
+      <div class="row g-2">
+        <div class="col-md-5"><label>Nama Produk</label><input class="form-control" name="nama"></div>
+        <div class="col-md-2"><label>Harga</label><input type="number" class="form-control" name="harga" min="0"></div>
+        <div class="col-md-2"><label>Stok</label><input type="number" class="form-control" name="jumlah" min="0"></div>
+        <div class="col-md-2"><label>Stok Minimum</label><input type="number" class="form-control" name="batas" min="0"></div>
         <div class="col-md-1 d-flex align-items-end"><button class="btn btn-primary w-100">Simpan</button></div>
-        </div>
-    </div>
+      </div>
+    </form>
+  </div>
 
-    <div class="d-flex gap-2 mb-2">
-        <button class="btn btn-outline-success">Export Excel</button>
-        <button class="btn btn-outline-secondary">Import Excel</button>
-        <div class="form-check ms-auto">
-        <input class="form-check-input" type="checkbox" id="notifRestock">
-        <label class="form-check-label" for="notifRestock">Notifikasi Restock</label>
-        </div>
-    </div>
-
-    <div class="table-responsive">
-        <table class="table table-hover align-middle">
-        <thead><tr><th>Produk</th><th>Harga</th><th>Stok</th><th>Min</th><th>Status</th><th>Aksi</th></tr></thead>
-        <tbody>
-            <!-- jika stok < min, beri badge merah -->
-            <!-- <tr><td>Kopi</td><td>45.000</td><td>4</td><td>5</td><td><span class="badge bg-danger">Menipis</span></td><td>...</td></tr> -->
-        </tbody>
-        </table>
-    </div>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead><tr><th>Produk</th><th>Harga</th><th>Stok</th><th>Min</th><th>Status</th><th>Aksi</th></tr></thead>
+      <tbody id="tbodyStok"></tbody>
+    </table>
+  </div>
 </div>
 
 <!-- Footer (di akhir <body>) -->
@@ -65,6 +55,9 @@
 </footer>
 
 <!-- Scripts umum (di akhir <body>) -->
+<script src="js/dummyData.js"></script>
 <script src="libs/sweetalert2.min.js"></script>
 <script src="libs/chart.min.js"></script>
 <script src="libs/FileSaver.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/stok.js"></script>

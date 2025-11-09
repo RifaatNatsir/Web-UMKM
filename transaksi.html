@@ -26,43 +26,72 @@
 </nav>
 
 <div class="container mt-4">
-    <h3 class="mb-3">Catat Pembukuan</h3>
+  <h3 class="mb-3">Catat Pembukuan</h3>
 
-    <!-- Filter -->
-    <div class="card p-3 mb-3">
-        <div class="row g-2">
-        <div class="col-md-3"><label>Periode</label><input type="month" class="form-control"></div>
-        <div class="col-md-3"><label>Kategori</label><input class="form-control" placeholder="Semua"></div>
-        <div class="col-md-3"><label>Tipe</label>
-            <select class="form-select"><option>Semua</option><option>Pemasukan</option><option>Pengeluaran</option></select>
-        </div>
-        <div class="col-md-3 d-flex align-items-end"><button class="btn btn-outline-primary w-100">Terapkan Filter</button></div>
-        </div>
+  <!-- Filter (opsional, belum dipakai JS) -->
+  <div class="card p-3 mb-3">
+    <div class="row g-2">
+      <div class="col-md-3"><label>Periode</label><input type="month" class="form-control"></div>
+      <div class="col-md-3"><label>Kategori</label><input class="form-control" placeholder="Semua"></div>
+      <div class="col-md-3">
+        <label>Tipe</label>
+        <select class="form-select"><option>Semua</option><option>Pemasukan</option><option>Pengeluaran</option></select>
+      </div>
+      <div class="col-md-3 d-flex align-items-end"><button class="btn btn-outline-primary w-100">Terapkan Filter</button></div>
     </div>
+  </div>
 
-    <!-- Form -->
-    <div class="card p-3 mb-3">
-        <h6 class="mb-3">Tambah Transaksi</h6>
-        <div class="row g-2">
-        <div class="col-md-2"><label>Tanggal</label><input type="date" class="form-control"></div>
-        <div class="col-md-2"><label>Jenis</label>
-            <select class="form-select"><option value="pemasukan">Pemasukan</option><option value="pengeluaran">Pengeluaran</option></select>
+  <!-- FORM (WAJIB: id=formTransaksi + name pada input) -->
+  <div class="card p-3 mb-3">
+    <h6 class="mb-3">Tambah Transaksi</h6>
+    <form id="formTransaksi">
+      <div class="row g-2">
+        <div class="col-md-2">
+          <label>Tanggal</label>
+          <input type="date" class="form-control" name="tanggal">
         </div>
-        <div class="col-md-3"><label>Kategori</label><input class="form-control" placeholder="Penjualan/Operasional/..."></div>
-        <div class="col-md-2"><label>Nominal</label><input type="number" class="form-control" min="0"></div>
-        <div class="col-md-3"><label>Kontak (opsional)</label><input class="form-control" placeholder="Pelanggan/Supplier"></div>
-        <div class="col-12"><label class="mt-2">Deskripsi</label><input class="form-control" placeholder="Keterangan singkat"></div>
-        <div class="col-12 d-flex justify-content-end mt-2"><button class="btn btn-primary">Simpan</button></div>
+        <div class="col-md-2">
+          <label>Jenis</label>
+          <select class="form-select" name="jenis">
+            <option value="pemasukan">Pemasukan</option>
+            <option value="pengeluaran">Pengeluaran</option>
+          </select>
         </div>
-    </div>
+        <div class="col-md-3">
+          <label>Kategori</label>
+          <input class="form-control" name="kategori" placeholder="Penjualan/Operasional/...">
+        </div>
+        <div class="col-md-2">
+          <label>Nominal</label>
+          <input type="number" class="form-control" name="nominal" min="0">
+        </div>
+        <div class="col-md-3">
+          <label>Kontak (opsional)</label>
+          <input class="form-control" name="kontak" placeholder="Pelanggan/Supplier">
+        </div>
+        <div class="col-12">
+          <label class="mt-2">Deskripsi</label>
+          <input class="form-control" name="keterangan" placeholder="Keterangan singkat">
+        </div>
+        <div class="col-12 d-flex justify-content-end mt-2">
+          <button class="btn btn-primary">Simpan</button>
+        </div>
+      </div>
+    </form>
+  </div>
 
-    <!-- Tabel -->
-    <div class="table-responsive">
-        <table class="table table-bordered align-middle">
-        <thead><tr><th>Tanggal</th><th>Tipe</th><th>Kategori</th><th>Nominal</th><th>Kontak</th><th>Deskripsi</th><th>Aksi</th></tr></thead>
-        <tbody><!-- baris transaksi --></tbody>
-        </table>
-    </div>
+  <!-- TABEL (WAJIB: id=tbodyTransaksi) -->
+  <div class="table-responsive">
+    <table class="table table-bordered align-middle">
+      <thead>
+        <tr>
+          <th>Tanggal</th><th>Tipe</th><th>Kategori</th><th>Nominal</th>
+          <th>Kontak</th><th>Deskripsi</th><th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="tbodyTransaksi"></tbody>
+    </table>
+  </div>
 </div>
 
 
@@ -72,6 +101,9 @@
 </footer>
 
 <!-- Scripts umum (di akhir <body>) -->
+<script src="js/dummyData.js"></script>
 <script src="libs/sweetalert2.min.js"></script>
 <script src="libs/chart.min.js"></script>
 <script src="libs/FileSaver.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/transaksi.js"></script>

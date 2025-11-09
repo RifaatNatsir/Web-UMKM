@@ -1,0 +1,78 @@
+// transaksi.js
+const KEY_TRX = "transaksi";
+
+const elForm = $id("formTransaksi");
+const elBody = $id("tbodyTransaksi");
+
+// render tabel
+function renderTransaksi() {
+  const data = $store.ensure(KEY_TRX, []);
+  elBody.innerHTML = data.map(t => `
+    <tr>
+      <td>${t.tanggal}</td>
+      <td class="${t.jenis==='pemasukan'?'text-success':'text-danger'}">${t.jenis}</td>
+      <td>${t.kategori||"-"}</td>
+      <td>${$fmt.rupiah(t.nominal)}</td>
+      <td>${t.kontak||"-"}</td>
+      <td>${t.keterangan||"-"}</td>
+      <td>
+        <button class="btn btn-sm btn-warning" data-act="edit" data-id="${t.id}">Edit</button>
+        <button class="btn btn-sm btn-danger" data-act="del" data-id="${t.id}">Hapus</button>
+      </td>
+    </tr>
+  `).join("");
+}
+
+elForm?.addEventListener("submit", (e)=>{
+  e.preventDefault();
+  const fd = new FormData(elForm);
+  const item = {
+    id: $uuid(),
+    tanggal: fd.get("tanggal") || $fmt.ymd(new Date()),
+    jenis: fd.get("jenis") || "pemasukan",
+    kategori: (fd.get("kategori")||"").trim(),
+    nominal: Number(fd.get("nominal")||0),
+    keterangan: (fd.get("keterangan")||"").trim(),
+    kontak: (fd.get("kontak")||"").trim()
+  };
+  if(!item.kategori || item.nominal<=0){
+    return Swal.fire("Validasi", "Kategori & nominal harus benar.", "warning");
+  }
+  const data = $store.ensure(KEY_TRX, []);
+  data.push(item);
+  $store.write(KEY_TRX, data);
+  elForm.reset();
+  Swal.fire("Tersimpan", "Transaksi ditambahkan.", "success");
+  renderTransaksi();
+});
+
+elBody?.addEventListener("click",(e)=>{
+  const btn = e.target.closest("button"); if(!btn) return;
+  const id = btn.dataset.id, act = btn.dataset.act;
+  const data = $store.ensure(KEY_TRX, []);
+  if(act==="del"){
+    Swal.fire({title:"Hapus transaksi?", icon:"warning", showCancelButton:true})
+      .then(r=>{
+        if(!r.isConfirmed) return;
+        const next = data.filter(x=>x.id!==id);
+        $store.write(KEY_TRX, next);
+        renderTransaksi();
+      });
+  }
+  if(act==="edit"){
+    const t = data.find(x=>x.id===id);
+    if(!t) return;
+    // isi ke form untuk diedit cepat
+    elForm.querySelector('[name="tanggal"]').value = t.tanggal;
+    elForm.querySelector('[name="jenis"]').value = t.jenis;
+    elForm.querySelector('[name="kategori"]').value = t.kategori;
+    elForm.querySelector('[name="nominal"]').value = t.nominal;
+    elForm.querySelector('[name="keterangan"]').value = t.keterangan||"";
+    elForm.querySelector('[name="kontak"]').value = t.kontak||"";
+    // hapus dulu yang lama, nanti disubmit jadi entri baru (sederhana)
+    $store.write(KEY_TRX, data.filter(x=>x.id!==id));
+    renderTransaksi();
+  }
+});
+
+renderTransaksi();
