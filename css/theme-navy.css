@@ -1,0 +1,194 @@
+/* ======================================= */
+/*        UMKM APP — THEME NAVY FINAL       */
+/* ======================================= */
+
+/* Hindari warna biru terang default Bootstrap */
+html {
+  --bs-primary: #0d1b2a;
+}
+
+/* ============ WARNA UTAMA ============ */
+:root {
+  --navy: #0d1b2a;          /* warna dasar utama sidebar/navy */
+  --navy-2: #14243a;        /* gradasi navy */
+  --navy-dark: #0b1623;     /* versi lebih gelap untuk hover */
+  --primary: #1b6ca8;       /* warna utama tombol */
+  --bg: #f7f9fc;            /* latar belakang halaman */
+  --card: #ffffff;          /* warna kartu / panel */
+  --line: #e9edf3;          /* warna garis pembatas */
+  --muted: #6b7280;         /* teks sekunder */
+  --text: #1b2430;          /* teks utama */
+  --success: #0a7a43;       /* warna sukses */
+  --danger: #b42318;        /* warna bahaya */
+  --warn: #c77800;          /* warna peringatan */
+}
+
+/* ============ DASAR HALAMAN ============ */
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ============ NAVBAR ============ */
+.navbar.bg-primary {
+  background: var(--navy) !important;
+}
+.navbar-dark .navbar-brand,
+.navbar-dark .nav-link {
+  color: #e7f0ff !important;
+}
+.navbar-dark .nav-link.active {
+  background: rgba(255, 255, 255, .12);
+  border-radius: 10px;
+}
+
+/* ============ CARD ============ */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 6px 20px rgba(13, 27, 42, .06);
+}
+
+/* ============ TABEL ============ */
+.table thead th {
+  background: #f3f6fb;
+  color: #2f3a4b;
+  font-weight: 600;
+  border-bottom: 1px solid var(--line);
+}
+.table tbody td {
+  vertical-align: middle;
+  border-color: var(--line) !important;
+}
+
+/* ============ BADGE ============ */
+.badge {
+  border-radius: 999px;
+  padding: .35rem .6rem;
+  font-weight: 500;
+}
+.bg-danger-soft {
+  background: #ffe3e3;
+  color: var(--danger);
+}
+.bg-warn-soft {
+  background: #fff4e5;
+  color: var(--warn);
+}
+.bg-success-soft {
+  background: #e8f6ef;
+  color: var(--success);
+}
+
+/* ============ FORM ============ */
+.form-control,
+.form-select {
+  border-radius: 10px;
+  border-color: var(--line);
+}
+.form-control:focus,
+.form-select:focus {
+  box-shadow: 0 0 0 .25rem rgba(27, 108, 168, .18);
+  border-color: #b6dbff;
+}
+
+/* ============ BUTTON ============ */
+.btn {
+  border-radius: 10px;
+}
+.btn-primary {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.btn-outline-secondary:hover {
+  background: #eef2f7;
+}
+
+/* ============ AUTH PAGE ============ */
+.auth-wrap {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(70% 70% at top left, #e5eefc 0, rgba(229, 238, 252, 0) 60%),
+    radial-gradient(70% 70% at bottom right, #e7f7ff 0, rgba(231, 247, 255, 0) 60%), var(--bg);
+}
+.auth-card {
+  width: min(100%, 960px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 12px 40px rgba(13, 27, 42, .08);
+}
+.auth-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+}
+@media (max-width: 900px) {
+  .auth-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.auth-left {
+  background: linear-gradient(135deg, var(--navy), var(--navy-2));
+  color: #e7f0ff;
+  padding: 24px;
+}
+.auth-left .mini-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+.auth-left .mini-card {
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(255, 255, 255, .06);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .12) inset;
+}
+.auth-left .mini-card small {
+  opacity: .85;
+}
+.auth-left .mini-card h3 {
+  margin: .25rem 0 0 0;
+  color: #fff;
+}
+.auth-right {
+  padding: 24px;
+}
+
+/* ============ SIDEBAR FIX (agar tidak jadi biru terang) ============ */
+.sidebar {
+  background: var(--navy) !important;
+  color: #e7f0ff;
+}
+.sidebar.open {
+  background: var(--navy) !important;
+}
+.sidebar a.active,
+.sidebar a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ============ TOPBAR (mobile & desktop) ============ */
+.topbar {
+  background: var(--card);
+  color: var(--text);
+}
+@media (max-width: 992px) {
+  .topbar {
+    background: var(--navy) !important;
+    color: #fff;
+  }
+  .sidebar {
+    background: var(--navy) !important;
+  }
+}
+
+/* ======================================= */
+/*          END OF THEME NAVY FINAL         */
+/* ======================================= */
