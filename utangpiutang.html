@@ -148,32 +148,33 @@
       <div class="container py-3">
         <h3 class="mb-3">Utang / Piutang</h3>
 
-        <div class="card p-3 mb-3">
-          <div class="row g-2">
-            <div class="col-md-3">
-              <label>Status</label>
-              <select class="form-select">
-                <option>Semua</option>
-                <option>Belum Lunas</option>
-                <option>Lunas</option>
-              </select>
-            </div>
-            <div class="col-md-3">
-              <label>Jenis</label>
-              <select class="form-select">
-                <option>Utang</option>
-                <option>Piutang</option>
-              </select>
-            </div>
-            <div class="col-md-3">
-              <label>Jatuh Tempo ≤</label>
-              <input type="date" class="form-control">
-            </div>
-            <div class="col-md-3 d-flex align-items-end">
-              <button class="btn btn-outline-primary w-100">Terapkan</button>
+          <div class="card p-3 mb-3">
+            <div class="row g-2">
+              <div class="col-md-3">
+                <label>Status</label>
+                <select id="filterStatus" class="form-select">
+                  <option value="Semua">Semua Status</option>
+                  <option value="Belum Lunas">Belum Lunas</option>
+                  <option value="Lunas">Lunas</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label>Jenis</label>
+                <select id="filterJenis" class="form-select">
+                  <option value="">Semua Jenis</option>
+                  <option value="utang">Utang</option>
+                  <option value="piutang">Piutang</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label>Jatuh Tempo ≤</label>
+                <input id="filterTempo" type="date" class="form-control">
+              </div>
+              <div class="col-md-3 d-flex align-items-end">
+                <button id="btnFilterUP" class="btn btn-outline-primary w-100">Terapkan Filter</button>
+              </div>
             </div>
           </div>
-        </div>
 
         <div class="card p-3 mb-3">
           <h6 class="mb-3">Catat Utang/Piutang</h6>
@@ -182,13 +183,6 @@
               <div class="col-md-3">
                 <label>Nama Kontak</label>
                 <input class="form-control" name="nama" placeholder="Pelanggan/Supplier">
-              </div>
-              <div class="col-md-2">
-                <label>Jenis</label>
-                <select class="form-select" name="jenis">
-                  <option value="utang">Utang</option>
-                  <option value="piutang">Piutang</option>
-                </select>
               </div>
               <div class="col-md-2">
                 <label>Nominal</label>
@@ -202,25 +196,25 @@
                 <label>Jatuh Tempo</label>
                 <input type="date" class="form-control" name="jatuhTempo">
               </div>
-              <div class="col-md-1">
-                <label>Status</label>
-                <select class="form-select" name="status">
-                  <option>Belum Lunas</option>
-                  <option>Lunas</option>
+              <div class="col-md-2">
+                <label>Jenis</label>
+                <select class="form-select" name="jenis">
+                  <option value="utang">Utang</option>
+                  <option value="piutang">Piutang</option>
                 </select>
+              </div>
+              <div class="col-md-1 d-flex align-items-end">
+                <button class="btn btn-primary w-100">Simpan</button>
               </div>
 
               <div class="col-12">
                 <label class="mt-2">Bukti Transaksi (opsional)</label>
-                <input type="file" class="form-control" name="bukti" accept="image/*,.pdf">
+                <input type="file" class="form-control" accept="image/*,.pdf" name="bukti">
               </div>
+
               <div class="col-12">
                 <label class="mt-2">Catatan</label>
                 <input class="form-control" name="catatan" placeholder="keterangan">
-              </div>
-
-              <div class="col-12 d-flex justify-content-end mt-2">
-                <button class="btn btn-primary w-100">Simpan</button>
               </div>
             </div>
           </form>

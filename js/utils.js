@@ -1,4 +1,3 @@
-// utils.js
 window.$store = {
   read: k => JSON.parse(localStorage.getItem(k) || "null"),
   write: (k, v) => localStorage.setItem(k, JSON.stringify(v)),

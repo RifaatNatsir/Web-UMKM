@@ -1,4 +1,3 @@
-// invoice.js
 // Fitur Invoice / Kwitansi Digital
 
 const KEY_TRX = "transaksi";

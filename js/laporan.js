@@ -1,4 +1,3 @@
-// laporan.js
 const TRX = $store.ensure("transaksi", []);
 const UP  = $store.ensure("utangpiutang", []);
 

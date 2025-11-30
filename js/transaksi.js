@@ -1,16 +1,36 @@
-// transaksi.js
 const KEY_TRX = "transaksi";
 
 const elForm = $id("formTransaksi");
 const elBody = $id("tbodyTransaksi");
 
+// ELEMAN FILTER
+const fMonth   = document.getElementById("filterMonth");
+const fKategori= document.getElementById("filterKategori");
+const fJenis   = document.getElementById("filterJenis");
+const btnFilter= document.getElementById("btnFilterTrx");
+
 // render tabel
-function renderTransaksi() {
-  const data = $store.ensure(KEY_TRX, []);
+function renderTransaksi(source) {
+  const data = source || $store.ensure(KEY_TRX, []);
+  if (!elBody) return;
+
+  if (!data.length) {
+    elBody.innerHTML = `
+      <tr>
+        <td colspan="7" class="text-center text-muted">
+          Belum ada transaksi.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
   elBody.innerHTML = data.map(t => `
     <tr>
       <td>${t.tanggal}</td>
-      <td class="${t.jenis==='pemasukan'?'text-success':'text-danger'}">${t.jenis}</td>
+      <td class="${t.jenis==='pemasukan'?'text-success':'text-danger'}">
+        ${t.jenis}
+      </td>
       <td>${t.kategori||"-"}</td>
       <td>${$fmt.rupiah(t.nominal)}</td>
       <td>${t.kontak||"-"}</td>
@@ -21,6 +41,41 @@ function renderTransaksi() {
       </td>
     </tr>
   `).join("");
+}
+
+// Terapkan filter berdasarkan input
+function applyTransaksiFilter() {
+  const all = $store.ensure(KEY_TRX, []);
+
+  const monthVal = fMonth?.value || "";           // format "YYYY-MM"
+  const keyText  = (fKategori?.value || "").toLowerCase().trim();
+  const jenisVal = fJenis?.value || "";           // "" / "pemasukan" / "pengeluaran"
+
+  let rows = all;
+
+  // Filter bulan (periode)
+  if (monthVal) {
+    rows = rows.filter(t => (t.tanggal || "").startsWith(monthVal));
+  }
+
+  // Filter kategori / keterangan (search text)
+  if (keyText) {
+    rows = rows.filter(t => {
+      const src = [
+        t.kategori || "",
+        t.keterangan || "",
+        t.kontak || ""
+      ].join(" ").toLowerCase();
+      return src.includes(keyText);
+    });
+  }
+
+  // Filter jenis
+  if (jenisVal) {
+    rows = rows.filter(t => t.jenis === jenisVal);
+  }
+
+  renderTransaksi(rows);
 }
 
 elForm?.addEventListener("submit", (e)=>{
@@ -43,7 +98,7 @@ elForm?.addEventListener("submit", (e)=>{
   $store.write(KEY_TRX, data);
   elForm.reset();
   Swal.fire("Tersimpan", "Transaksi ditambahkan.", "success");
-  renderTransaksi();
+  applyTransaksiFilter(); // re-render dengan filter aktif
 });
 
 elBody?.addEventListener("click",(e)=>{
@@ -56,7 +111,7 @@ elBody?.addEventListener("click",(e)=>{
         if(!r.isConfirmed) return;
         const next = data.filter(x=>x.id!==id);
         $store.write(KEY_TRX, next);
-        renderTransaksi();
+        applyTransaksiFilter();
       });
   }
   if(act==="edit"){
@@ -71,13 +126,29 @@ elBody?.addEventListener("click",(e)=>{
     elForm.querySelector('[name="kontak"]').value = t.kontak||"";
     // hapus dulu yang lama, nanti disubmit jadi entri baru (sederhana)
     $store.write(KEY_TRX, data.filter(x=>x.id!==id));
-    renderTransaksi();
+    applyTransaksiFilter();
   }
 });
 
-renderTransaksi();
+// EVENT FILTER
+btnFilter?.addEventListener("click", (e)=>{
+  e.preventDefault();
+  applyTransaksiFilter();
+});
+
+// (opsional) realtime saat ganti select / input
+[fMonth, fKategori, fJenis].forEach(el=>{
+  el?.addEventListener("change", applyTransaksiFilter);
+  if (el === fKategori) {
+    el.addEventListener("input", applyTransaksiFilter);
+  }
+});
+
+// render awal
+applyTransaksiFilter();
 
 
+// === SCRIPT SIDEBAR (punya kamu) ===
 const menuBtn = document.getElementById('menuBtn');
 const sidebar = document.querySelector('.sidebar');
 

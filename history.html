@@ -148,29 +148,49 @@
       <div class="container py-3">
         <h3 class="mb-3">Riwayat & Pencarian</h3>
 
-        <div class="card p-3 mt-4">
-          <h6 class="mb-3">Riwayat & Pencarian</h6>
-          <div class="row g-2 mb-2">
-            <div class="col-md-4"><input class="form-control" placeholder="Cari keterangan..."></div>
-            <div class="col-md-2"><input type="date" class="form-control"></div>
-            <div class="col-md-2"><input type="date" class="form-control"></div>
-            <div class="col-md-2">
-              <select class="form-select"><option>Semua Tipe</option><option>Pemasukan</option><option>Pengeluaran</option></select>
+          <div class="card p-3 mt-4">
+            <h6 class="mb-3">Riwayat & Pencarian</h6>
+            <div class="row g-2 mb-2">
+              <div class="col-md-4">
+                <input id="hisSearch" class="form-control" placeholder="Cari keterangan...">
+              </div>
+              <div class="col-md-2">
+                <input id="hisFrom" type="date" class="form-control">
+              </div>
+              <div class="col-md-2">
+                <input id="hisTo" type="date" class="form-control">
+              </div>
+              <div class="col-md-2">
+                <select id="hisType" class="form-select">
+                  <option value="">Semua Tipe</option>
+                  <option value="pemasukan">Pemasukan</option>
+                  <option value="pengeluaran">Pengeluaran</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <select id="hisKategori" class="form-select">
+                  <option value="">Semua Kategori</option>
+                  <!-- opsi kategori akan diisi otomatis dari JS -->
+                </select>
+              </div>
             </div>
-            <div class="col-md-2">
-              <select class="form-select"><option>Semua Kategori</option></select>
-            </div>
-          </div>
-          <button class="btn btn-outline-primary mb-3">Terapkan Filter</button>
+            <button id="btnHisFilter" class="btn btn-outline-primary mb-3">Terapkan Filter</button>
 
-          <div class="table-responsive">
-            <table class="table table-striped align-middle">
-              <thead><tr><th>Tanggal</th><th>Keterangan</th><th>Kategori</th><th>Tipe</th><th>Jumlah</th></tr></thead>
-              <tbody></tbody>
-            </table>
+            <div class="table-responsive">
+              <table class="table table-striped align-middle">
+                <thead>
+                  <tr>
+                    <th>Tanggal</th>
+                    <th>Keterangan</th>
+                    <th>Kategori</th>
+                    <th>Tipe</th>
+                    <th>Jumlah</th>
+                  </tr>
+                </thead>
+                <tbody id="tbodyHistory"></tbody>
+              </table>
+            </div>
           </div>
-        </div>
-      </div>
 
       <footer class="text-center p-3 mt-4 text-secondary">
         © 2025 UMKM App
@@ -185,32 +205,7 @@
 <script src="js/ui.js"></script>
 <script src="js/dummyData.js"></script>
 <script src="js/utils.js"></script>
+<script src="js/history.js"></script>
 
-<script>
-// === PERBAIKAN SCRIPT DARI SOLUSI ANDA ===
-const menuBtn = document.getElementById('menuBtn');
-const sidebar = document.querySelector('.sidebar');
-
-// Toggle sidebar di mobile
-menuBtn?.addEventListener('click', (e) => {
-  e.stopPropagation();
-  sidebar.classList.toggle('open');
-});
-
-// Tutup sidebar saat klik area luar
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('.sidebar') && !e.target.closest('#menuBtn') && sidebar.classList.contains('open')) {
-    sidebar.classList.remove('open');
-  }
-});
-
-// Tandai menu aktif
-const currentPage = location.pathname.split('/').pop();
-document.querySelectorAll('.sidebar a').forEach(a => {
-  if (a.getAttribute('href') === currentPage) {
-    a.classList.add('active');
-  }
-});
-</script>
 </body>
 </html>

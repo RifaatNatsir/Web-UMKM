@@ -1,4 +1,3 @@
-// stok.js
 const KEY_STOK = "stok";
 const elFormS = $id("formStok");
 const elBodyS = $id("tbodyStok");

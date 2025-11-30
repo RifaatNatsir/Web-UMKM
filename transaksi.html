@@ -150,13 +150,25 @@
 
         <div class="card p-3 mb-3">
           <div class="row g-2">
-            <div class="col-md-3"><label>Periode</label><input type="month" class="form-control"></div>
-            <div class="col-md-3"><label>Kategori</label><input class="form-control" placeholder="Semua"></div>
+            <div class="col-md-3">
+              <label>Periode</label>
+              <input id="filterMonth" type="month" class="form-control">
+            </div>
+            <div class="col-md-3">
+              <label>Kategori / Keterangan</label>
+              <input id="filterKategori" class="form-control" placeholder="Semua">
+            </div>
             <div class="col-md-3">
               <label>Tipe</label>
-              <select class="form-select"><option>Semua</option><option>Pemasukan</option><option>Pengeluaran</option></select>
+              <select id="filterJenis" class="form-select">
+                <option value="">Semua</option>
+                <option value="pemasukan">Pemasukan</option>
+                <option value="pengeluaran">Pengeluaran</option>
+              </select>
             </div>
-            <div class="col-md-3 d-flex align-items-end"><button class="btn btn-outline-primary w-100">Terapkan Filter</button></div>
+            <div class="col-md-3 d-flex align-items-end">
+              <button id="btnFilterTrx" class="btn btn-outline-primary w-100">Terapkan Filter</button>
+            </div>
           </div>
         </div>
 
