@@ -1,4 +1,3 @@
-// utangpiutang.js
 const KEY_UP   = "utangpiutang";
 const elFormUP = $id("formUP");
 const elBodyUP = $id("tbodyUP");

@@ -148,7 +148,7 @@ btnFilter?.addEventListener("click", (e)=>{
 applyTransaksiFilter();
 
 
-// === SCRIPT SIDEBAR (punya kamu) ===
+// === SCRIPT SIDEBAR ===
 const menuBtn = document.getElementById('menuBtn');
 const sidebar = document.querySelector('.sidebar');
 
