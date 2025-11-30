@@ -70,3 +70,28 @@ elBodyUP?.addEventListener("click",(e)=>{
 });
 
 renderUP();
+
+
+const menuBtn = document.getElementById('menuBtn');
+const sidebar = document.querySelector('.sidebar');
+
+menuBtn?.addEventListener('click', e => {
+  e.stopPropagation();
+  sidebar.classList.toggle('open');
+  document.body.classList.toggle('menu-open');
+});
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.sidebar') && !e.target.closest('#menuBtn') && sidebar.classList.contains('open')) {
+    sidebar.classList.remove('open');
+    document.body.classList.remove('menu-open');
+  }
+});
+
+// Tandai menu aktif
+const currentPage = location.pathname.split('/').pop();
+document.querySelectorAll('.sidebar a').forEach(a => {
+  if (a.getAttribute('href') === currentPage) {
+    a.classList.add('active');
+  }
+});

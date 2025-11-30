@@ -57,58 +57,10 @@
 
   <!-- libs & base -->
   <script src="libs/bootstrap.bundle.min.js"></script>
+  <script src="libs/sweetalert2.min.js"></script>
   <script src="js/ui.js"></script>
   <script src="js/dummyData.js"></script>
+  <script src="js/authlogin.js"></script>
 
-  <!-- Tab & Login/Register logic (localStorage) -->
-  <script>
-    // Tabs
-    const tabLogin=document.getElementById('tabLogin');
-    const tabRegister=document.getElementById('tabRegister');
-    const loginTab=document.getElementById('loginTab');
-    const registerTab=document.getElementById('registerTab');
-    tabLogin.onclick=()=>{tabLogin.classList.add('active');tabRegister.classList.remove('active');loginTab.classList.add('active');registerTab.classList.remove('active');};
-    tabRegister.onclick=()=>{tabRegister.classList.add('active');tabLogin.classList.remove('active');registerTab.classList.add('active');loginTab.classList.remove('active');};
-
-    // Auth storage
-    const usersKey='umkm_users', authKey='auth_user';
-    const getUsers=()=>JSON.parse(localStorage.getItem(usersKey)||'[]');
-    const setUsers=users=>localStorage.setItem(usersKey,JSON.stringify(users));
-
-    // Seed akun awal jika kosong (tanpa tombol demo)
-    if(!getUsers().length){
-      setUsers([{name:'Admin Demo', email:'admin@demo.com', pass:'12345'}]);
-    }
-
-    // Login
-    document.getElementById('loginForm')?.addEventListener('submit', e=>{
-      e.preventDefault();
-      const email=lemail.value.trim().toLowerCase();
-      const pass=lpass.value.trim();
-      const user=getUsers().find(u=>u.email===email && u.pass===pass);
-      if(user){
-        localStorage.setItem(authKey, JSON.stringify({name:user.name,email:user.email}));
-        location.href='dashboard.html';
-      }else{
-        alert('Email atau password salah!');
-      }
-    });
-
-    // Register
-    document.getElementById('regForm')?.addEventListener('submit', e=>{
-      e.preventDefault();
-      const name=rnama.value.trim();
-      const email=remail.value.trim().toLowerCase();
-      const pass=rpass.value.trim();
-      const pass2=rpass2.value.trim();
-      if(!name||!email||!pass) return alert('Lengkapi semua data.');
-      if(pass!==pass2) return alert('Konfirmasi password tidak cocok.');
-      const users=getUsers();
-      if(users.some(u=>u.email===email)) return alert('Email sudah terdaftar.');
-      users.push({name,email,pass}); setUsers(users);
-      alert('Registrasi berhasil! Silakan login.');
-      tabLogin.click();
-    });
-  </script>
 </body>
 </html>

@@ -149,26 +149,59 @@
         <h3 class="mb-3">Manajemen Kontak</h3>
 
         <div class="card p-3 mb-3">
-            <h6 class="mb-3">Tambah Kontak</h6>
+          <h6 class="mb-3">Tambah Kontak</h6>
+
+          <form id="formKontak"> <!-- FORM DITAMBAHKAN -->
+
             <div class="row g-2">
-            <div class="col-md-4"><label>Nama</label><input class="form-control"></div>
-            <div class="col-md-2"><label>Tipe</label>
-                <select class="form-select"><option>Pelanggan</option><option>Supplier</option></select>
+
+              <div class="col-md-4">
+                <label>Nama</label>
+                <input class="form-control" name="nama" required>
+              </div>
+
+              <div class="col-md-2">
+                <label>Tipe</label>
+                <select class="form-select" name="tipe" required>
+                  <option>Pelanggan</option>
+                  <option>Supplier</option>
+                </select>
+              </div>
+
+              <div class="col-md-3">
+                <label>Telepon</label>
+                <input class="form-control" name="telepon">
+              </div>
+
+              <div class="col-md-3">
+                <label>Email</label>
+                <input type="email" class="form-control" name="email">
+              </div>
+
+              <div class="col-12">
+                <label class="mt-2">Alamat</label>
+                <input class="form-control" name="alamat">
+              </div>
+
+              <div class="col-12 d-flex justify-content-end mt-2">
+                <button class="btn btn-primary">Simpan</button>
+              </div>
+
             </div>
-            <div class="col-md-3"><label>Telepon</label><input class="form-control"></div>
-            <div class="col-md-3"><label>Email</label><input type="email" class="form-control"></div>
-            <div class="col-12"><label class="mt-2">Alamat</label><input class="form-control"></div>
-            <div class="col-12 d-flex justify-content-end mt-2"><button class="btn btn-primary">Simpan</button></div>
-            </div>
+          </form>
         </div>
 
         <div class="table-responsive">
-            <table class="table table-hover align-middle">
-            <thead><tr><th>Nama</th><th>Tipe</th><th>Telepon</th><th>Email</th><th>Alamat</th><th>Aksi</th></tr></thead>
-            <tbody></tbody>
-            </table>
+          <table class="table table-hover align-middle">
+            <thead>
+              <tr>
+                <th>Nama</th><th>Tipe</th><th>Telepon</th>
+                <th>Email</th><th>Alamat</th><th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyKontak"><!-- AUTO RENDER BY JS --></tbody>
+          </table>
         </div>
-      </div>
 
       <footer class="text-center p-3 mt-4 text-secondary">
         © 2025 UMKM App
@@ -183,32 +216,7 @@
 <script src="js/ui.js"></script>
 <script src="js/dummyData.js"></script>
 <script src="js/utils.js"></script>
+<script src="js/kontak.js"></script>
 
-<script>
-// === PERBAIKAN SCRIPT DARI SOLUSI ANDA ===
-const menuBtn = document.getElementById('menuBtn');
-const sidebar = document.querySelector('.sidebar');
-
-// Toggle sidebar di mobile
-menuBtn?.addEventListener('click', (e) => {
-  e.stopPropagation();
-  sidebar.classList.toggle('open');
-});
-
-// Tutup sidebar saat klik area luar
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('.sidebar') && !e.target.closest('#menuBtn') && sidebar.classList.contains('open')) {
-    sidebar.classList.remove('open');
-  }
-});
-
-// Tandai menu aktif
-const currentPage = location.pathname.split('/').pop();
-document.querySelectorAll('.sidebar a').forEach(a => {
-  if (a.getAttribute('href') === currentPage) {
-    a.classList.add('active');
-  }
-});
-</script>
 </body>
 </html>

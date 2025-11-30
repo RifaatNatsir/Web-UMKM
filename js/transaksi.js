@@ -76,3 +76,28 @@ elBody?.addEventListener("click",(e)=>{
 });
 
 renderTransaksi();
+
+
+const menuBtn = document.getElementById('menuBtn');
+const sidebar = document.querySelector('.sidebar');
+
+// Toggle sidebar di mobile
+menuBtn?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  sidebar.classList.toggle('open');
+});
+
+// Tutup sidebar saat klik area luar
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.sidebar') && !e.target.closest('#menuBtn') && sidebar.classList.contains('open')) {
+    sidebar.classList.remove('open');
+  }
+});
+
+// Tandai menu aktif
+const currentPage = location.pathname.split('/').pop();
+document.querySelectorAll('.sidebar a').forEach(a => {
+  if (a.getAttribute('href') === currentPage) {
+    a.classList.add('active');
+  }
+});

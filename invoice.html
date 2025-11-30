@@ -149,31 +149,58 @@
         <h3 class="mb-3">Invoice / Kwitansi Digital</h3>
 
         <div class="row g-3">
-            <div class="col-md-6">
+          <div class="col-md-6">
             <div class="card p-3 h-100">
-                <h6 class="mb-3">Sumber Data</h6>
-                <div class="mb-2">
-                <select class="form-select">
-                    <option value="trx">Dari Transaksi Tercatat</option>
-                    <option value="manual">Input Manual</option>
+              <h6 class="mb-3">Sumber Data</h6>
+
+              <!-- Mode sumber data -->
+              <div class="mb-2">
+                <label>Sumber Invoice</label>
+                <select class="form-select" id="selMode">
+                  <option value="trx">Dari Transaksi Tercatat</option>
+                  <option value="manual">Input Manual</option>
                 </select>
-                </div>
+              </div>
 
-                <div class="row g-2">
-                <div class="col-md-6"><label>Nama Pelanggan</label><input class="form-control"></div>
-                <div class="col-md-6"><label>Tanggal</label><input type="date" class="form-control"></div>
-                <div class="col-md-12"><label>Deskripsi</label><input class="form-control" placeholder="Rincian barang/jasa"></div>
-                <div class="col-md-6"><label>Jumlah</label><input type="number" class="form-control" min="0"></div>
-                <div class="col-md-6"><label>Catatan</label><input class="form-control" placeholder="opsional"></div>
-                </div>
+              <!-- Pilih transaksi (muncul kalau mode = trx) -->
+              <div class="mb-2" id="wrapTrx" style="display:none;">
+                <label>Pilih Transaksi</label>
+                <select class="form-select" id="selTransaksi">
+                  <option value="">-- Pilih Transaksi --</option>
+                </select>
+              </div>
 
-                <div class="d-flex gap-2 mt-3">
-                <button class="btn btn-primary">Simpan</button>
-                <button class="btn btn-success">Kirim</button>
-                <button class="btn btn-outline-secondary">Bagikan</button>
+              <!-- Form detail invoice -->
+              <div class="row g-2">
+                <div class="col-md-6">
+                  <label>Nama Pelanggan</label>
+                  <input class="form-control" id="invNama" name="nama">
                 </div>
+                <div class="col-md-6">
+                  <label>Tanggal</label>
+                  <input type="date" class="form-control" id="invTanggal" name="tanggal">
+                </div>
+                <div class="col-md-12">
+                  <label>Deskripsi</label>
+                  <input class="form-control" id="invDesk" name="deskripsi" placeholder="Rincian barang/jasa">
+                </div>
+                <div class="col-md-6">
+                  <label>Jumlah</label>
+                  <input type="number" class="form-control" id="invJumlah" name="jumlah" min="0">
+                </div>
+                <div class="col-md-6">
+                  <label>Catatan</label>
+                  <input class="form-control" id="invCatatan" name="catatan" placeholder="opsional">
+                </div>
+              </div>
+
+              <div class="d-flex gap-2 mt-3">
+                <button class="btn btn-primary" id="btnSaveInv">Simpan</button>
+                <button class="btn btn-success" id="btnSendInv">Kirim</button>
+                <button class="btn btn-outline-secondary" id="btnShareInv">Bagikan</button>
+              </div>
             </div>
-            </div>
+          </div>
 
             <div class="col-md-6">
             <div class="card p-3 h-100">
@@ -203,32 +230,7 @@
 <script src="js/ui.js"></script>
 <script src="js/dummyData.js"></script>
 <script src="js/utils.js"></script>
+<script src="js/invoice.js"></script>
 
-<script>
-// === PERBAIKAN SCRIPT DARI SOLUSI ANDA ===
-const menuBtn = document.getElementById('menuBtn');
-const sidebar = document.querySelector('.sidebar');
-
-// Toggle sidebar di mobile
-menuBtn?.addEventListener('click', (e) => {
-  e.stopPropagation();
-  sidebar.classList.toggle('open');
-});
-
-// Tutup sidebar saat klik area luar
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('.sidebar') && !e.target.closest('#menuBtn') && sidebar.classList.contains('open')) {
-    sidebar.classList.remove('open');
-  }
-});
-
-// Tandai menu aktif
-const currentPage = location.pathname.split('/').pop();
-document.querySelectorAll('.sidebar a').forEach(a => {
-  if (a.getAttribute('href') === currentPage) {
-    a.classList.add('active');
-  }
-});
-</script>
 </body>
 </html>

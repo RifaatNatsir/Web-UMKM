@@ -57,3 +57,38 @@ new Chart(ctx, {
         }]
     }
 });
+
+
+
+const menuBtn = document.getElementById('menuBtn');
+const sidebar = document.querySelector('.sidebar');
+const overlay = document.querySelector('.overlay');
+
+// Buka/tutup sidebar
+menuBtn?.addEventListener('click', e => {
+  e.stopPropagation();
+  sidebar.classList.toggle('open');
+  overlay.classList.toggle('show');
+});
+
+// Klik overlay = tutup sidebar
+overlay?.addEventListener('click', () => {
+  sidebar.classList.remove('open');
+  overlay.classList.remove('show');
+});
+
+// Klik link di sidebar = langsung navigasi + tutup sidebar
+document.querySelectorAll('.sidebar a').forEach(link => {
+  link.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('show');
+  });
+});
+
+// Tandai menu aktif
+const currentPage = location.pathname.split('/').pop();
+document.querySelectorAll('.sidebar a').forEach(a => {
+  if (a.getAttribute('href') === currentPage) {
+    a.classList.add('active');
+  }
+});
