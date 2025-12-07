@@ -132,9 +132,6 @@ btnFilter?.addEventListener("click", (e)=>{
 // (opsional) realtime saat ganti select / input
 [fMonth, fKategori, fJenis].forEach(el=>{
   el?.addEventListener("change", applyTransaksiFilter);
-  if (el === fKategori) {
-    el.addEventListener("input", applyTransaksiFilter);
-  }
 });
 
 // render awal
