@@ -58,16 +58,9 @@ function applyTransaksiFilter() {
     rows = rows.filter(t => (t.tanggal || "").startsWith(monthVal));
   }
 
-  // Filter kategori / keterangan (search text)
+  // Filter kategori (Dropdown Spesifik)
   if (keyText) {
-    rows = rows.filter(t => {
-      const src = [
-        t.kategori || "",
-        t.keterangan || "",
-        t.kontak || ""
-      ].join(" ").toLowerCase();
-      return src.includes(keyText);
-    });
+    rows = rows.filter(t => (t.kategori || "").toLowerCase() === keyText);
   }
 
   // Filter jenis

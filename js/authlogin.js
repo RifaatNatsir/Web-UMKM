@@ -36,6 +36,12 @@ document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
 
   const email = lemail.value.trim().toLowerCase();
   const pass = lpass.value.trim();
+
+  if (pass.length < 3) {
+    showNotif('error', 'Password minimal 3 karakter!');
+    return;
+  }
+  
   const user = getUsers().find((u) => u.email === email && u.pass === pass);
 
   if (user) {
@@ -81,6 +87,19 @@ document.getElementById('regForm')?.addEventListener('submit', async (e) => {
       title: "Password tidak cocok",
       text: "Konfirmasi password harus sama."
     });
+  }
+
+  if (pass.length < 3) {
+    Swal.fire({
+        toast: true,            // Mengaktifkan mode notifikasi baris
+        position: 'top',        // Posisi di atas tengah
+        icon: 'error',
+        title: 'Password minimal 3 karakter!',
+        showConfirmButton: false,
+        timer: 3000,            // Hilang dalam 3 detik
+        timerProgressBar: true
+    });
+    return; // Stop proses login
   }
 
   const users = getUsers();
