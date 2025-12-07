@@ -38,28 +38,49 @@ document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
   const pass = lpass.value.trim();
 
   if (pass.length < 3) {
-    showNotif('error', 'Password minimal 3 karakter!');
-    return;
+    Swal.fire({
+        toast: true,             // WAJIB: Agar jadi notifikasi baris (bukan popup tengah)
+        position: 'top',         // Posisi di atas tengah (bisa 'top-end' untuk kanan)
+        icon: 'error',
+        title: 'Password minimal 3 karakter!',
+        showConfirmButton: false,
+        timer: 2000,             // Hilang dalam 3 detik
+        timerProgressBar: true,
+        background: '#fff',      // Opsional: warna background
+        color: '#000'            // Opsional: warna teks
+    });
+    return; // Stop proses login
   }
   
   const user = getUsers().find((u) => u.email === email && u.pass === pass);
 
   if (user) {
     await Swal.fire({
+      toast: true,
+      position: 'top',
       title: "Berhasil Masuk",
-      text: "Selamat datang kembali!",
       icon: "success",
-      timer: 1200,
-      showConfirmButton: false
+      timer: 2200,
+      showConfirmButton: false,
+      timerProgressBar: true,
+      background: '#fff',
+      color: '#000'
     });
 
     localStorage.setItem(authKey, JSON.stringify({ name: user.name, email: user.email }));
     location.href = 'dashboard.html';
   } else {
     Swal.fire({
+      toast: true,
       icon: "error",
+      position: 'top',
       title: "Login Gagal",
-      text: "Email atau password salah."
+      text: "Email atau password salah.",
+      timer: 2000,
+      showConfirmButton: false,
+      timerProgressBar: true,
+      background: '#fff',
+      color: '#000'
     });
   }
 });
@@ -75,29 +96,45 @@ document.getElementById('regForm')?.addEventListener('submit', async (e) => {
 
   if (!name || !email || !pass) {
     return Swal.fire({
+      toast: true,
       icon: "warning",
+      position: 'top',
       title: "Data belum lengkap",
-      text: "Isi semua kolom terlebih dahulu."
+      text: "Isi semua kolom terlebih dahulu.",
+      timer: 2000,
+      showConfirmButton: false,
+      timerProgressBar: true,
+      background: '#fff',
+      color: '#000'
     });
   }
 
   if (pass !== pass2) {
     return Swal.fire({
+      toast: true,
       icon: "warning",
+      position: 'top',
       title: "Password tidak cocok",
-      text: "Konfirmasi password harus sama."
+      text: "Konfirmasi password harus sama.",
+      timer: 2000,
+      showConfirmButton: false,
+      timerProgressBar: true,
+      background: '#fff',
+      color: '#000'
     });
   }
 
   if (pass.length < 3) {
     Swal.fire({
-        toast: true,            // Mengaktifkan mode notifikasi baris
-        position: 'top',        // Posisi di atas tengah
+        toast: true,             // WAJIB: Agar jadi notifikasi baris (bukan popup tengah)
+        position: 'top',         // Posisi di atas tengah (bisa 'top-end' untuk kanan)
         icon: 'error',
         title: 'Password minimal 3 karakter!',
         showConfirmButton: false,
-        timer: 3000,            // Hilang dalam 3 detik
-        timerProgressBar: true
+        timer: 2000,             // Hilang dalam 3 detik
+        timerProgressBar: true,
+        background: '#fff',      // Opsional: warna background
+        color: '#000'            // Opsional: warna teks
     });
     return; // Stop proses login
   }
@@ -105,21 +142,33 @@ document.getElementById('regForm')?.addEventListener('submit', async (e) => {
   const users = getUsers();
   if (users.some((u) => u.email === email)) {
     return Swal.fire({
+      toast: true,
       icon: "error",
+      position: 'top',
       title: "Email sudah terdaftar",
-      text: "Gunakan email lain."
+      text: "Gunakan email lain.",
+      timer: 2000,
+      showConfirmButton: false,
+      timerProgressBar: true,
+      background: '#fff',
+      color: '#000'
     });
   }
 
   users.push({ name, email, pass });
   setUsers(users);
 
-  await Swal.fire({
+  await Swal.fire({ 
+    toast: true,
+    position: 'top',
     icon: "success",
     title: "Registrasi Berhasil",
     text: "Silakan login menggunakan akun baru.",
-    timer: 1500,
-    showConfirmButton: false
+    timer: 2000,
+    showConfirmButton: false,
+    timerProgressBar: true,
+    background: '#fff',
+    color: '#000'
   });
 
   tabLogin.click(); // pindah ke tab login
