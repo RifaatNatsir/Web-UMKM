@@ -85,7 +85,18 @@ elFormStok?.addEventListener("submit", (e) => {
   data.push(item);
   saveAllStok(data);
   elFormStok.reset();
-  Swal.fire("Tersimpan", "Data stok berhasil disimpan.", "success");
+  Swal.fire({
+    toast: true,            
+    position: 'top',         
+    icon: 'success',
+    title: "Tersimpan",
+    text:"Data stok berhasil disimpan.",
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    background: '#fff',  
+    color: '#000', 
+  });
   renderStok();
 });
 

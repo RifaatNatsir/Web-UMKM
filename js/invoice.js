@@ -106,11 +106,18 @@ function applyFromTransaksi() {
 // Validasi sederhana sebelum simpan
 function validate(data) {
   if (!data.nama || !data.tanggal || data.jumlah <= 0) {
-    Swal.fire(
-      "Data belum lengkap",
-      "Minimal isi Nama, Tanggal, dan Jumlah.",
-      "warning"
-    );
+    Swal.fire({
+      toast: true,             // WAJIB: Agar jadi notifikasi baris (bukan popup tengah)
+      position: 'top',         // Posisi di atas tengah (bisa 'top-end' untuk kanan)
+      icon: 'warning',
+      title: "Data belum lengkap",
+      text:"Minimal isi Nama, Tanggal, dan Jumlah.",
+      showConfirmButton: false,
+      timer: 2000,             // Hilang dalam 3 detik
+      timerProgressBar: true,
+      background: '#fff',      // Opsional: warna background
+      color: '#000',           // Opsional: warna teks
+    });
     return false;
   }
   return true;
